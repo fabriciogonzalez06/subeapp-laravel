@@ -1,0 +1,32 @@
+version: '3'
+services:
+     subedb:
+             container_name: subedb
+             image: mariadb/server:10.4
+             env_file:
+                  - ./mariadb.env
+             volumes:
+                   - "$PWD/sube_data:/var/lib/mysql"
+             restart: always
+             ports:
+                 - 3310:3306
+             networks:
+                   - sube
+
+     phpmyadmin:
+            container_name: phpmyadmin
+            image: phpmyadmin/phpmyadmin
+            env_file:
+                  - avanza_phpmyadmin.env
+
+            restart: always
+            ports:
+                - 9090:80
+            depends_on:
+                - subedb
+
+            networks:
+                - sube
+networks:
+     sube:
+        external: true
