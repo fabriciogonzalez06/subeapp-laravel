@@ -17,7 +17,7 @@ services:
             container_name: phpmyadmin
             image: phpmyadmin/phpmyadmin
             env_file:
-                  - avanza_phpmyadmin.env
+                  - ./phpmyadmin.env
 
             restart: always
             ports:
