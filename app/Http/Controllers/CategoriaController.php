@@ -31,7 +31,7 @@ class CategoriaController extends Controller {
             $res = $mensajeResHttp->mensajeExitoV2($categorias, '');
             return response()->json($res, $res['codigoEstado']);
         } catch (\Exception $ex) {
-            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'ocurrio un error interno'), $ex->getTrace(), 500);
+            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'ocurrio un error interno'), $ex->getMessage(), 500);
             return response()->json($error, $error['codigoEstado']);
         }
     }

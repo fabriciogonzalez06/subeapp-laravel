@@ -7,7 +7,7 @@ services:
                   - mariadb.env
 
              volumes:
-                   - "$PWD/sube_data:/var/lib/mysql"
+                   - "/home/sube_data:/var/lib/mysql"
              restart: always
              ports:
                  - 3306:3306

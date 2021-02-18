@@ -53,7 +53,7 @@ class UsuarioController extends Controller
             $data= $mensajeResHttp->mensajeExito($usuario,'Se creo correctamente el usuario');
             return response()->json($data,$data['codigoEstado']);
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
 
            $error= $mensajeResHttp->mensajeError(array('mensaje'=>'Ocurrio un error interno'),$ex->getTrace() ,500);
             return response()->json($error,$error['codigoEstado']);
@@ -112,7 +112,7 @@ class UsuarioController extends Controller
 
             return response()->json($res,200);
         } catch (\Exception $e) {
-            $error= $mensajeResHttp->mensajeError(array('mensaje'=>'Ocurrio un error interno'),'UsuarioController => inicioSesion ',500);
+            $error= $mensajeResHttp->mensajeError(array('mensaje'=>'Ocurrio un error interno'),$e->getMessage(),500);
             return response()->json($error,$error['codigoEstado']);
         }
     }
