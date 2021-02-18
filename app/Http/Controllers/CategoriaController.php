@@ -127,7 +127,7 @@ class CategoriaController extends Controller {
                $error = $mensajeResHttp->mensajeError(array('mensaje' => 'No se encontró categoria'), '');
                 return response()->json($error, $error['codigoEstado']);
            }*/
-            
+
              Categorias::where('id', $id)->update($params_array);
              $categoria= Categorias::where('id',$id)->get();
 
@@ -156,12 +156,12 @@ class CategoriaController extends Controller {
                 $error = $mensajeResHttp->mensajeError(array('mensaje' => 'No se encontró la categoria'), '');
                 return response()->json($error, $error['codigoEstado']);
             }
-            
+
             $categoria->delete();
-            
+
             $res = $mensajeResHttp->mensajeExito($categoria, 'Se elimino correctamente.');
             return response()->json($res, $res['codigoEstado']);
-            
+
         } catch (\Exception $ex) {
             $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getTrace(), 500);
             return response()->json($error, $error['codigoEstado']);
