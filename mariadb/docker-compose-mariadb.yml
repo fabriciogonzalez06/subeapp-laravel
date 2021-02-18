@@ -3,12 +3,9 @@ services:
      subedb:
              container_name: subedb
              image: mariadb/server:10.4
-            #  env_file:
-            #       - mariadb.env
-             environment:
-                - PORT: 3310
-                - MYSQL_ROOT_PASSWORD: "${subeapp_mariadb_root_password}"
-                - MARIADB_DATABASE: subeapp
+             env_file:
+                  - mariadb.env
+
              volumes:
                    - "$PWD/sube_data:/var/lib/mysql"
              restart: always
@@ -20,11 +17,9 @@ services:
      phpmyadmin:
             container_name: phpmyadmin
             image: phpmyadmin/phpmyadmin
-            # env_file:
-            #       - phpmyadmin.env
-            environment:
-              - PMA_HOST: "${db_ip}"
-              - PMA_PORT: 3310
+            env_file:
+                  - phpmyadmin.env
+
 
             restart: always
             ports:
