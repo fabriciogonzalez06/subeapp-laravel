@@ -16,7 +16,7 @@ class CategoriaController extends Controller {
 
     //
     public function pruebas(Request $request) {
-        return "categorai controller prueba";
+        return "categorai controller prueba desde heroku";
     }
 
     public function listar() {
