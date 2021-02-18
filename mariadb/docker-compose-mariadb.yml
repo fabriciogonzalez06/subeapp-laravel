@@ -10,7 +10,7 @@ services:
                    - "$PWD/sube_data:/var/lib/mysql"
              restart: always
              ports:
-                 - 3310:3306
+                 - 3306:3306
              networks:
                    - sube
 
