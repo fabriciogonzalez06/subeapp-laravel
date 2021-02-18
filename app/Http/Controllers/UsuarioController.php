@@ -31,7 +31,7 @@ class UsuarioController extends Controller
 
             $validar = \Validator::make($params_array,[
                 'nombre'=> 'required',
-                'correo' => 'required|email|unique:tblUsuarios',
+                'correo' => 'required|email|unique:tblusuarios',
                 'contrasena'=>'required'
             ]);
 

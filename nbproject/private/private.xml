@@ -8,6 +8,7 @@
             <file>file:/C:/xampp/htdocs/subeapp/app/Helpers/MensajesRespuesta.php</file>
             <file>file:/C:/xampp/htdocs/subeapp/app/Http/Controllers/ProductoController.php</file>
             <file>file:/C:/xampp/htdocs/subeapp/.env</file>
+            <file>file:/C:/xampp/htdocs/subeapp/app/Http/Controllers/UsuarioController.php</file>
             <file>file:/C:/xampp/htdocs/subeapp/routes/web.php</file>
         </group>
     </open-files>
