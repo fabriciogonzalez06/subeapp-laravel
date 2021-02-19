@@ -47,7 +47,7 @@ class UsuarioController extends Controller
             $usuario->nombre = $params_array['nombre'];
             $usuario->correo = $params_array['correo'];
             $usuario->contrasena = $pwdCifrada;
-            $usuario->idRol = 2;
+            $usuario->idRol = 1;
             $usuario->save();
 
             $data= $mensajeResHttp->mensajeExito($usuario,'Se creo correctamente el usuario');
@@ -55,7 +55,7 @@ class UsuarioController extends Controller
 
         } catch (Exception $ex) {
 
-           $error= $mensajeResHttp->mensajeError(array('mensaje'=>'Ocurrio un error interno'),$ex->getTrace() ,500);
+           $error= $mensajeResHttp->mensajeError(array('mensaje'=>'Ocurrio un error interno'),$e->getMessage() ,500);
             return response()->json($error,$error['codigoEstado']);
 
         }

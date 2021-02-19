@@ -11,7 +11,7 @@ class ProductoController extends Controller {
     //
 
     public function __construct() {
-        $this->middleware('api.auth', ['except' => ['']]);
+        $this->middleware('api.auth', ['except' => ['listar']]);
     }
 
     public function pruebas(Request $request) {
@@ -37,7 +37,7 @@ class ProductoController extends Controller {
             $res = $mensajeResHttp->mensajeExitoV2($data, '');
             return response()->json($res, $res['codigoEstado']);
         } catch (\Illuminate\Database\QueryException $ex) {
-            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getTrace(), 500);
+            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getMessage(), 500);
             return response()->json($error, $error['codigoEstado']);
         }
     }
@@ -85,7 +85,7 @@ class ProductoController extends Controller {
         $params_array = json_decode($todo['json'], true);
 
 
- 
+
 
 
         try {
@@ -140,12 +140,12 @@ class ProductoController extends Controller {
              $separado= explode("/", $urlImagen);
              $separado2= explode(".", $separado[count($separado)-1]);
             if ($ex->getCode() === "45000") {
-                
+
                 Cloudinary::uploadapi()->destroy($separado2[0]);
                 $error = $mensajeResHttp->mensajeError(array('mensaje' => $ex->getPrevious()->errorInfo[2]), $ex->getPrevious(), 400);
                 return response()->json($error, $error['codigoEstado']);
             }
-            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getTrace(), 500);
+            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getMessage(), 500);
             return response()->json($error, $error['codigoEstado']);
         }
     }
@@ -184,7 +184,7 @@ class ProductoController extends Controller {
 
             if ($params->soloEstado === 1) {
 
-                //solo va a actualizar el estado nada mas 
+                //solo va a actualizar el estado nada mas
 
                 $validar = \Validator::make($params_array, [
                             'estado' => 'required'
@@ -248,7 +248,7 @@ class ProductoController extends Controller {
                 $error = $mensajeResHttp->mensajeError(array('mensaje' => $ex->getPrevious()->errorInfo[2]), $ex->getPrevious(), 400);
                 return response()->json($error, $error['codigoEstado']);
             }
-            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getPrevious(), 500);
+            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getMessage(), 500);
             return response()->json($error, $error['codigoEstado']);
         }
     }
@@ -264,8 +264,8 @@ class ProductoController extends Controller {
             $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Los parametros enviados no son validos'), '');
             return response()->json($error, $error["codigoEstado"]);
         }
-        
-       
+
+
 
         try {
 
@@ -298,6 +298,7 @@ class ProductoController extends Controller {
         $json = $request->input('json', null);
         $mensajeResHttp = new \MensajeHttp();
         $jwtAuth = new \JwtAuth();
+
 
         $params = json_decode($json);
         $params_array = json_decode($json, true);
@@ -339,7 +340,7 @@ class ProductoController extends Controller {
                 $error = $mensajeResHttp->mensajeError(array('mensaje' => $ex->getPrevious()->errorInfo[2]), $ex->getPrevious(), 400);
                 return response()->json($error, $error['codigoEstado']);
             }
-            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getPrevious(), 500);
+            $error = $mensajeResHttp->mensajeError(array('mensaje' => 'Ocurrio un error interno'), $ex->getMessage(), 500);
             return response()->json($error, $error['codigoEstado']);
         }
     }
