@@ -13,6 +13,10 @@
 
 use App\Http\Middleware\ApiAuthMiddleware;
 
+if (App::environment('production')) {
+    URL::forceScheme('https');
+}
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -40,7 +44,7 @@ Route::put('/api/categoria/{id}','CategoriaController@actualizar');
 Route::delete('/api/categoria/{id}','CategoriaController@eliminar');
 
 
-//Rutas para productos 
+//Rutas para productos
 Route::post('/api/producto/listar','ProductoController@listar');
 Route::post('/api/producto','ProductoController@guardar');
 Route::put('/api/producto/{id}','ProductoController@actualizar');
